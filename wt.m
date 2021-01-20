@@ -101,7 +101,7 @@ power = (abs(wave)).^2 ;        % compute wavelet power spectrum
 
 %%  Change here
 
-signif = Mod_Global_Sig(sigma2, power);
+signif = Mod_Global_Sig(power);
 % signif = wave_signif(1.0,dt,scale,0,Args.AR1,-1,-1,Args.Mother);
 % sig95 = (signif')*(ones(1,n));  % expand signif --> (J+1)x(N) array
 sig95 = (signif)*(ones(1,n));  % expand signif --> (J+1)x(N) array

@@ -1,33 +1,27 @@
-function signif = Mod_Global_Sig(variance, power)
+function signif = Mod_Global_Sig(power)
 
-scale = size (power, 1);
-scale_Gpower = zeros (scale,1);
-j = 0;
-for s = 1:scale
-    for t = 1:  size (power, 2)
-        if power (s, t) ==0
-            j = j+1;
-        end
-    end
+% The average power of every scale
+powerAvg = zeros (size (power, 1),1);
+
+% The 95% significant level of every scale
+signi = zeros (size (power, 1),1);
+
+% Loop over the scales
+for s = 1 : size (power, 1)
     
-    k = find (power(s, :));
-    scale_size = length (k);
-    scale_Gpower (s) = (sum(power(s, :))/scale_size);
+    % Calculate the average power of every scale
+    powerAvg (s) = (sum(power(s, :))/size (power, 2));
     
-    if j~=0
-        j=0;
+    powerSig = sort(power(s, :));
+    
+    a = powerSig (end - 100);
+    if powerAvg (s)< a
+        signi (s) = a;
+    else 
+        signi (s) = powerAvg (s);
     end
 end
 
-signif = scale_Gpower;
-% for s = 1:scale
-%     for t = 1:time
-%         if power(s, t) ~=0
-%             P_scale(s) = P_scale(s) +  power(s, t); 
-%         end        
-%     end
-%     
-%     n = n+1;
-% %     ave
-% end
+signif = signi;
+
 
