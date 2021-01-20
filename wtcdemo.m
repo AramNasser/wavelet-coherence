@@ -11,32 +11,24 @@
 
 %% Load the data
 % First we load the two time series into the matrices d1 and d2.
+seriesname={'Traffic' 'windSpeed'};
 
-seriesname={'AO' 'BMI'};
-d1=load('faq\jao.txt');
-d2=load('faq\jbaltic.txt');
+T = readtable('0All.csv');
 
-%% Change the pdf.
-% The time series of Baltic Sea ice extent is highly bi-modal and we
-% therefore transform the timeseries into a series of percentiles. The
-% transformed series probably reacts 'more linearly' to climate.
-
-
-d2(:,2)=boxpdf(d2(:,2));
-
+[Traffic, temperature, windSpeed, rain, visibility] = DataPreparation(T);
 
 %% Continuous wavelet transform (CWT)
 % The CWT expands the time series into time
 % frequency space.
 
 figure('color',[1 1 1])
-tlim=[min(d1(1,1),d2(1,1)) max(d1(end,1),d2(end,1))];
+tlim=[min(Traffic(1,1),rain(1,1)) max(Traffic(end,1),rain(end,1))];
 subplot(2,1,1);
-wt(d1);
+wt(Traffic);
 title(seriesname{1});
 set(gca,'xlim',tlim);
 subplot(2,1,2)
-wt(d2)
+wt(rain)
 title(seriesname{2})
 set(gca,'xlim',tlim)
 
