@@ -11,7 +11,7 @@
 
 %% Load the data
 % First we load the two time series into the matrices d1 and d2.
-seriesname={'Traffic' 'windSpeed'};
+seriesname={'Traffic' 'Rain'};
 
 T = readtable('0All.csv');
 

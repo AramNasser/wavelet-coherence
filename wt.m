@@ -105,7 +105,8 @@ signif = Mod_Global_Sig(power);
 % signif = wave_signif(1.0,dt,scale,0,Args.AR1,-1,-1,Args.Mother);
 % sig95 = (signif')*(ones(1,n));  % expand signif --> (J+1)x(N) array
 sig95 = (signif)*(ones(1,n));  % expand signif --> (J+1)x(N) array
-sig95 = power ./ (sigma2*sig95);
+% sig95 = power ./ (sigma2*sig95);
+sig95 = power ./ (sig95);
 %%
 
 Yticks = 2.^(fix(log2(min(period))):fix(log2(max(period))));
