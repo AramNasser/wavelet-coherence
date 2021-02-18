@@ -38,7 +38,7 @@ set(gca,'xlim',tlim)
 % the time series show high common power.
 
 figure('color',[1 1 1])
-xwt(d1,d2)
+xwt(Traffic,rain)
 title(['XWT: ' seriesname{1} '-' seriesname{2} ] )
 
 %% Wavelet coherence (WTC)
@@ -46,9 +46,9 @@ title(['XWT: ' seriesname{1} '-' seriesname{2} ] )
 % time series co-vary (but does not necessarily have high power).
 
 
-figure('color',[1 1 1])
-wtc(d1,d2)
-title(['WTC: ' seriesname{1} '-' seriesname{2} ] )
+% figure('color',[1 1 1])
+% wtc(d1,d2)
+% title(['WTC: ' seriesname{1} '-' seriesname{2} ] )
 
 
 

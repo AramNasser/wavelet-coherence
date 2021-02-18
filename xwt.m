@@ -155,14 +155,16 @@ Wxy=X.*conj(Y);
 %---- Significance levels
 %Pk1=fft_theor(freq,lag1_1);
 %Pk2=fft_theor(freq,lag1_2);
-Pkx=ar1spectrum(Args.AR1(1),period./dt);
-Pky=ar1spectrum(Args.AR1(2),period./dt);
+% Pkx=ar1spectrum(Args.AR1(1),period./dt);
+% Pky=ar1spectrum(Args.AR1(2),period./dt);
 
+signif = Mod_Global_Sig(abs(Wxy));
+sig95 = (signif)*(ones(1,n)); 
 
-V=2;
-Zv=3.9999;
-signif=sigmax*sigmay*sqrt(Pkx.*Pky)*Zv/V;
-sig95 = (signif')*(ones(1,n));  % expand signif --> (J+1)x(N) array
+% V=2;
+% Zv=3.9999;
+% signif=sigmax*sigmay*sqrt(Pkx.*Pky)*Zv/V;
+% sig95 = (signif')*(ones(1,n));  % expand signif --> (J+1)x(N) array
 sig95 = abs(Wxy) ./ sig95;
 if ~strcmpi(Args.Mother,'morlet')
     sig95(:)=nan;
