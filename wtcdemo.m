@@ -13,42 +13,13 @@
 % First we load the two time series into the matrices d1 and d2.
 seriesname={'Traffic' 'Rain'};
 
-T = readtable('0All.csv');
+T = readtable('MINNEAPOLIS_WithTraffic.csv');
 
-[Traffic, temperature, windSpeed, rain, visibility] = DataPreparation(T);
-
-%% Continuous wavelet transform (CWT)
-% The CWT expands the time series into time
-% frequency space.
-
-figure('color',[1 1 1])
-tlim=[min(Traffic(1,1),rain(1,1)) max(Traffic(end,1),rain(end,1))];
-subplot(2,1,1);
-wt(Traffic);
-title(seriesname{1});
-set(gca,'xlim',tlim);
-subplot(2,1,2)
-wt(rain)
-title(seriesname{2})
-set(gca,'xlim',tlim)
+[rain, traffic1, traffic2, traffic3, traffic4] = DataPreparation(T);
 
 
-%% Cross wavelet transform (XWT)
-% The XWT finds regions in time frequency space where
-% the time series show high common power.
+sum1  = xwt(rain,T{:, 2});
 
-figure('color',[1 1 1])
-xwt(Traffic,rain)
-title(['XWT: ' seriesname{1} '-' seriesname{2} ] )
+sum2  = xwt(rain,traffic2);
 
-%% Wavelet coherence (WTC)
-% The WTC finds regions in time frequency space where the two
-% time series co-vary (but does not necessarily have high power).
-
-
-% figure('color',[1 1 1])
-% wtc(d1,d2)
-% title(['WTC: ' seriesname{1} '-' seriesname{2} ] )
-
-
-
+sum3  = xwt(rain,traffic3);
