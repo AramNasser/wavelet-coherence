@@ -1,54 +1,42 @@
-%% Demo of the cross wavelet and wavelet coherence toolbox 
-% This example illustrates how simple it is to do
-% continuous wavelet transform (CWT), Cross wavelet transform (XWT)
-% and Wavelet Coherence (WTC) plots of your own data.
-%
-% The time series we will be analyzing are the winter
-% Arctic Oscillation index (AO) and
-% the maximum sea ice extent in the Baltic (BMI).
-%
-
 
 %% Load the data
 % First we load the two time series into the matrices d1 and d2.
 seriesname={'Traffic' 'Rain'};
 
-T = readtable('0All.csv');
+T = readtable('MINNEAPOLIS.csv');
 
-[Traffic, temperature, windSpeed, rain, visibility] = DataPreparation(T);
+[rain1, traffic1, traffic2, traffic3, traffic4] = TestDataPreparation(T);
 
-%% Continuous wavelet transform (CWT)
-% The CWT expands the time series into time
-% frequency space.
+sum1 = XWTSum(rain1, traffic1);
+sum2 = XWTSum(rain1, traffic2);
 
-figure('color',[1 1 1])
-tlim=[min(Traffic(1,1),rain(1,1)) max(Traffic(end,1),rain(end,1))];
-subplot(2,1,1);
-wt(Traffic);
-title(seriesname{1});
-set(gca,'xlim',tlim);
-subplot(2,1,2)
-wt(rain)
-title(seriesname{2})
-set(gca,'xlim',tlim)
+% sum = zeros(102, 1);
+% for i = 1 : 4
+%     %% Cross wavelet transform (XWT)
+%     [Rain, Traffic] = DataPreparation(T{:, 1}, T{:, i+1});
+%     sum = sum + XWTSum(Rain, Traffic);
+% end
 
 
-%% Cross wavelet transform (XWT)
-% The XWT finds regions in time frequency space where
-% the time series show high common power.
+% sum = DataPreparation(T{:,1}, T{:,2});
 
-figure('color',[1 1 1])
-xwt(Traffic,rain)
-title(['XWT: ' seriesname{1} '-' seriesname{2} ] )
+% sum = zeros(102, 1);
+% for i = 1 : 4
+%     %% Cross wavelet transform (XWT)
+%     [Rain, Traffic] = DataPreparation(T{:, 1}, T{:, i+1});
+%     sum = sum + XWTSum(Rain, Traffic);
+% end
 
-%% Wavelet coherence (WTC)
-% The WTC finds regions in time frequency space where the two
-% time series co-vary (but does not necessarily have high power).
+T = readtable('Rain_MNPLS_Crystal_WithTraffic.csv');
 
+for i=1 : 2
+    %% Cross wavelet transform (XWT)
+    [Rain, Traffic] = DataPreparation(T{:,1}, T{:,i+1});
+    sum = sum + XWTSum(Rain, Traffic);
+end
 
-% figure('color',[1 1 1])
-% wtc(d1,d2)
-% title(['WTC: ' seriesname{1} '-' seriesname{2} ] )
+T = readtable('STP st. paul_ with Traffic.csv');
+[Rain, Traffic] = DataPreparation(T{:,1}, T{:,2});
+sum = sum + XWTSum(Rain, Traffic);
 
-
-
+average = sum / size (Traffic);

@@ -68,7 +68,6 @@ function varargout=xwt(x,y,varargin)
 %THE SOFTWARE.
 %---------------------------------------------------------------------------
 
-
 % ------validate and reformat timeseries.
 [x,dt]=formatts(x);
 [y,dty]=formatts(y);
@@ -79,7 +78,6 @@ t=(max(x(1,1),y(1,1)):dt:min(x(end,1),y(end,1)))'; %common time period
 if length(t)<4
     error('The two time series must overlap.')
 end
-
 
 n=length(t);
 
@@ -121,10 +119,7 @@ sigmax=std(x(:,2));
 %ny=size(y,1);
 sigmay=std(y(:,2));
 
-
-
 %-----------:::::::::::::--------- ANALYZE ----------::::::::::::------------
-
 [X,period,scale,coix] = wavelet(x(:,2),dt,Args.Pad,Args.Dj,Args.S0,Args.J1,Args.Mother);%#ok
 [Y,period,scale,coiy] = wavelet(y(:,2),dt,Args.Pad,Args.Dj,Args.S0,Args.J1,Args.Mother);
 
@@ -140,31 +135,12 @@ coiy=coiy(idx);
 
 coi=min(coix,coiy);
 
-% -------- Cross
+% --Cross
 Wxy=X.*conj(Y);
-
-
-
-% sinv=1./(scale');
-% sinv=sinv(:,ones(1,size(Wxy,2)));
-%
-% sWxy=smoothwavelet(sinv.*Wxy,dt,period,dj,scale);
-% Rsq=abs(sWxy).^2./(smoothwavelet(sinv.*(abs(wave1).^2),dt,period,dj,scale).*smoothwavelet(sinv.*(abs(wave2).^2),dt,period,dj,scale));
-% freq = dt ./ period;
-
-%---- Significance levels
-%Pk1=fft_theor(freq,lag1_1);
-%Pk2=fft_theor(freq,lag1_2);
-% Pkx=ar1spectrum(Args.AR1(1),period./dt);
-% Pky=ar1spectrum(Args.AR1(2),period./dt);
 
 signif = Mod_Global_Sig(abs(Wxy));
 sig95 = (signif)*(ones(1,n)); 
 
-% V=2;
-% Zv=3.9999;
-% signif=sigmax*sigmay*sqrt(Pkx.*Pky)*Zv/V;
-% sig95 = (signif')*(ones(1,n));  % expand signif --> (J+1)x(N) array
 sig95 = abs(Wxy) ./ sig95;
 if ~strcmpi(Args.Mother,'morlet')
     sig95(:)=nan;
