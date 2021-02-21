@@ -31,7 +31,7 @@ end
 % 
 % chi = power(16, :);
 % histogram(chi)
-
+power = abs(power);
 signif = signi;
 
 

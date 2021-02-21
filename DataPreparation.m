@@ -1,9 +1,10 @@
 
-function [avg, Wxy] = XWTavg(rain, traffic)
+function [Rain, Traffic] = DataPreparation(rain, traffic)
 
 % Get normalized traffic data
-traffic = normalize(traffic);
+% traffic = normalize(traffic);
 M_traffic_Diff = [];
+
 days_in_week = 168; %days_in_week = 168; % 7 days:  168 = 7 * 24
 for i= days_in_week+1:length(traffic)
     value = traffic(i) - traffic(i - days_in_week);
@@ -12,10 +13,8 @@ end
 Traffic = M_traffic_Diff;
 
 % Get rain data
-rain = rain(1:(length(Traffic)));
-Rain = normalize(rain);
+Rain = rain(1:(length(Traffic)));
+% Rain = normalize(rain);
 % histogram(Rain)
-
-[avg, Wxy] = XWTSum(Rain, Traffic);
 
 end

@@ -1,4 +1,4 @@
-function [avg, Wxy] = XWTSum(x,y,varargin)
+function Wxy = XWTSum(x,y,varargin)
 
 % ------validate and reformat timeseries.
 [x,dt]=formatts(x);
@@ -43,17 +43,10 @@ end
 [X,period,scale] = wavelet(x(:,2),dt,Args.Pad,Args.Dj,Args.S0,Args.J1,Args.Mother);%#ok
 [Y,period,scale] = wavelet(y(:,2),dt,Args.Pad,Args.Dj,Args.S0,Args.J1,Args.Mother);
 
-
 % --Cross
-Wxy=X.*conj(Y);
+Wxy= abs (X.*conj(Y));
 
-WxySum = zeros (size (Wxy, 1),1);
-
-TimePoints = size (Wxy, 2);
-
-for s = 1 : size (Wxy, 1)    
-    % Calculate the average power of every scale
-    WxySum(s) = abs((sum(Wxy(s, :))./TimePoints));
 end
- 
-avg = WxySum;
+
+
+
