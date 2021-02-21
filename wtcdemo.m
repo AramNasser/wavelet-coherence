@@ -4,29 +4,36 @@
 seriesname={'Traffic' 'Rain'};
 
 T = readtable('MINNEAPOLIS_WT1.csv');
-% [avg1, Wxy1] = XWTavg(T{:,1}, T{:,2});
-xwt(T{:,1}, T{:,2});
+[avg1, Wxy1] = XWTavg(T{:,1}, T{:,2});
+% xwt(T{:,1}, T{:,2});
 
 T = readtable('MINNEAPOLIS_WT2.csv');
-% [avg2, Wxy2] = XWTavg(T{:,1}, T{:,2});
-xwt(T{:,1}, T{:,2});
+[avg2, Wxy2] = XWTavg(T{:,1}, T{:,2});
+% xwt(T{:,1}, T{:,2});
 
 T = readtable('MINNEAPOLIS_WT3.csv');
-% [avg3, Wxy3] = XWTavg(T{:,1}, T{:,2});
-xwt(T{:,1}, T{:,2});
+[avg3, Wxy3] = XWTavg(T{:,1}, T{:,2});
+% xwt(T{:,1}, T{:,2});
 
 T = readtable('MINNEAPOLIS_WT4.csv');
-% [avg4, Wxy4] = XWTavg(T{:,1}, T{:,2});
-xwt(T{:,1}, T{:,2});
+[avg4, Wxy4] = XWTavg(T{:,1}, T{:,2});
+% xwt(T{:,1}, T{:,2});
 
 T = readtable('Rain_MNPLS_Crystal_WT1.csv');
-% [avg5, Wxy5] = XWTavg(T{:,1}, T{:,2});
-xwt(T{:,1}, T{:,2});
+[avg5, Wxy5] = XWTavg(T{:,1}, T{:,2});
+% xwt(T{:,1}, T{:,2});
 
 T = readtable('Rain_MNPLS_Crystal_WT2.csv');
-% [avg6, Wxy6] = XWTavg(T{:,1}, T{:,2});
-xwt(T{:,1}, T{:,2});
+[avg6, Wxy6] = XWTavg(T{:,1}, T{:,2});
+% xwt(T{:,1}, T{:,2});
 
 T = readtable('STP st. paul_ with Traffic.csv');
-% [avg7, Wxy7] = XWTavg(T{:,1}, T{:,2});
-xwt(T{:,1}, T{:,2});
+[avg7, Wxy7] = XWTavg(T{:,1}, T{:,2});
+% xwt(T{:,1}, T{:,2});
+
+avg = (avg1 + avg2 + avg3 + avg4 + avg5 + avg6 + avg7)/7;
+
+T = readtable('MINNEAPOLIS_WT1.csv');
+xwtFinal (T{:,1}, T{:,2}, avg);
+
+
