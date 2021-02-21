@@ -1,5 +1,5 @@
 
-function sum =DataPreparation(rain, traffic)
+function [avg, Wxy] = XWTavg(rain, traffic)
 
 % Get normalized traffic data
 traffic = normalize(traffic);
@@ -16,6 +16,6 @@ rain = rain(1:(length(Traffic)));
 Rain = normalize(rain);
 % histogram(Rain)
 
-sum = XWTSum(Rain, Traffic);
+[avg, Wxy] = XWTSum(Rain, Traffic);
 
 end

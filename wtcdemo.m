@@ -3,40 +3,30 @@
 % First we load the two time series into the matrices d1 and d2.
 seriesname={'Traffic' 'Rain'};
 
-T = readtable('MINNEAPOLIS.csv');
+T = readtable('MINNEAPOLIS_WT1.csv');
+% [avg1, Wxy1] = XWTavg(T{:,1}, T{:,2});
+xwt(T{:,1}, T{:,2});
 
-[rain1, traffic1, traffic2, traffic3, traffic4] = TestDataPreparation(T);
+T = readtable('MINNEAPOLIS_WT2.csv');
+% [avg2, Wxy2] = XWTavg(T{:,1}, T{:,2});
+xwt(T{:,1}, T{:,2});
 
-sum1 = XWTSum(rain1, traffic1);
-sum2 = XWTSum(rain1, traffic2);
+T = readtable('MINNEAPOLIS_WT3.csv');
+% [avg3, Wxy3] = XWTavg(T{:,1}, T{:,2});
+xwt(T{:,1}, T{:,2});
 
-% sum = zeros(102, 1);
-% for i = 1 : 4
-%     %% Cross wavelet transform (XWT)
-%     [Rain, Traffic] = DataPreparation(T{:, 1}, T{:, i+1});
-%     sum = sum + XWTSum(Rain, Traffic);
-% end
+T = readtable('MINNEAPOLIS_WT4.csv');
+% [avg4, Wxy4] = XWTavg(T{:,1}, T{:,2});
+xwt(T{:,1}, T{:,2});
 
+T = readtable('Rain_MNPLS_Crystal_WT1.csv');
+% [avg5, Wxy5] = XWTavg(T{:,1}, T{:,2});
+xwt(T{:,1}, T{:,2});
 
-% sum = DataPreparation(T{:,1}, T{:,2});
-
-% sum = zeros(102, 1);
-% for i = 1 : 4
-%     %% Cross wavelet transform (XWT)
-%     [Rain, Traffic] = DataPreparation(T{:, 1}, T{:, i+1});
-%     sum = sum + XWTSum(Rain, Traffic);
-% end
-
-T = readtable('Rain_MNPLS_Crystal_WithTraffic.csv');
-
-for i=1 : 2
-    %% Cross wavelet transform (XWT)
-    [Rain, Traffic] = DataPreparation(T{:,1}, T{:,i+1});
-    sum = sum + XWTSum(Rain, Traffic);
-end
+T = readtable('Rain_MNPLS_Crystal_WT2.csv');
+% [avg6, Wxy6] = XWTavg(T{:,1}, T{:,2});
+xwt(T{:,1}, T{:,2});
 
 T = readtable('STP st. paul_ with Traffic.csv');
-[Rain, Traffic] = DataPreparation(T{:,1}, T{:,2});
-sum = sum + XWTSum(Rain, Traffic);
-
-average = sum / size (Traffic);
+% [avg7, Wxy7] = XWTavg(T{:,1}, T{:,2});
+xwt(T{:,1}, T{:,2});

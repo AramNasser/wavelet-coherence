@@ -1,4 +1,4 @@
-function signif = XWTSum(x,y,varargin)
+function [avg, Wxy] = XWTSum(x,y,varargin)
 
 % ------validate and reformat timeseries.
 [x,dt]=formatts(x);
@@ -49,9 +49,10 @@ Wxy=X.*conj(Y);
 
 WxySum = zeros (size (Wxy, 1),1);
 
+TimePoints = size (power, 2);
 for s = 1 : size (Wxy, 1)    
     % Calculate the average power of every scale
-    WxySum(s) = abs((sum(Wxy(s, :))));
+    WxySum(s) = abs((sum(Wxy(s, :))./TimePoints));
 end
  
-signif = WxySum;
+avg = WxySum;

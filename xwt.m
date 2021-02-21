@@ -138,7 +138,9 @@ coi=min(coix,coiy);
 % --Cross
 Wxy=X.*conj(Y);
 
-signif = Mod_Global_Sig(abs(Wxy));
+% signif = Mod_Global_Sig(abs(Wxy));
+signif = Mod_Global_SigTest(abs(Wxy));
+
 sig95 = (signif)*(ones(1,n)); 
 
 sig95 = abs(Wxy) ./ sig95;
