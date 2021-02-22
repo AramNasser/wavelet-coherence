@@ -1,8 +1,11 @@
 
 function [Rain, Traffic] = DataPreparation(rain, traffic)
 
+rain = rain (1:2195);
+traffic = traffic (1:2195);
+
 % Get normalized traffic data
-% traffic = normalize(traffic);
+traffic = normalize(traffic);
 M_traffic_Diff = [];
 
 days_in_week = 168; %days_in_week = 168; % 7 days:  168 = 7 * 24
@@ -14,7 +17,7 @@ Traffic = M_traffic_Diff;
 
 % Get rain data
 Rain = rain(1:(length(Traffic)));
-% Rain = normalize(rain);
+% Rain = normalize(Rain);
 % histogram(Rain)
 
 end

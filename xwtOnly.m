@@ -1,4 +1,4 @@
-function Wxy = XWTSum(x,y,varargin)
+function Wxy = xwtOnly(x,y,varargin)
 
 % ------validate and reformat timeseries.
 [x,dt]=formatts(x);
