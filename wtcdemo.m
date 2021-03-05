@@ -3,11 +3,12 @@
 % First we load the two time series into the matrices d1 and d2.
 seriesname={'Traffic' 'Rain'};
 
-[signi, Rsigni, Tsigni] = SigCalcu();
+% [signi, Rsigni, Tsigni] = SigCalcu();
+signi = SigCalcu();
 
-T = readtable('Rain_MNPLS_Crystal_WT2.csv');
+T = readtable('MINNEAPOLIS_WT4.csv');
 [Rain, Traffic] = DataPreparation(T{:,1}, T{:,2});
-xwtFinal (T{:,1}, T{:,2}, signi);
+xwtFinal (Rain, Traffic, signi);
 % 
 % figure
 % wtFinal (Rain, Rsigni);

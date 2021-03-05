@@ -68,7 +68,7 @@ coi=min(coix,coiy);
 
 % --Cross
 Wxy=X.*conj(Y);
-Wxy = abs (Wxy(1:end-2, :));
+% Wxy = abs (Wxy(1:end-2, :));
 
 sig95 = (avg)'*(ones(1,n)); 
 sig95 =  abs(Wxy)./ sig95;
@@ -77,7 +77,7 @@ if ~strcmpi(Args.Mother,'morlet')
     sig95(:)=nan;
 end
 
-period = period(1:end-2);
+% period = period(1:end-2);
 if Args.MakeFigure
     Yticks = 2.^(fix(log2(min(period))):fix(log2(max(period))));
 
